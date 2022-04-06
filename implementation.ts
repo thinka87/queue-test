@@ -18,4 +18,9 @@ q.emitter.addListener('package', (x: number) => {
 });
 
 //call handleCustomers function every 500 ms
-setInterval(handleCustomers, MICRO_BREAK_INTERVAL,customerQueue);
+const customersHandlerCaller = () => {
+    setTimeout(customersHandlerCaller,MICRO_BREAK_INTERVAL);
+    handleCustomers(customerQueue);
+};
+//call to Handler caller
+customersHandlerCaller();
